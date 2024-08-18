@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -37,12 +38,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
+    hilt {
+        enableAggregatingTask = true
+    }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10" //compatibility table here: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
     }
     packaging {
         resources {
@@ -62,7 +65,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.51")
+    ksp("com.google.dagger:hilt-android-compiler:2.51")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
