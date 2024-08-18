@@ -1,4 +1,8 @@
 package com.example.workmgrexample
 
-class WorkMgrExampleApp {
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class WorkMgrExampleApp: Application() {
 }
